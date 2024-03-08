@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnfye2361lijd"]
+
+[ext_resource type="Texture2D" uid="uid://cib5uipvmtixq" path="res://assets/tilemap_prueba.png" id="1_rl7y2"]
+[ext_resource type="Texture2D" uid="uid://b0v72detngf2u" path="res://assets/car_1.png" id="2_jtypj"]
+[ext_resource type="Texture2D" uid="uid://cdrousr8vsehb" path="res://assets/car_2.png" id="3_ui6th"]
+[ext_resource type="Texture2D" uid="uid://b3b6rr15h1wiu" path="res://assets/car_3.png" id="4_pbd0c"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gj76o"]
+texture = ExtResource("1_rl7y2")
+0:0/0 = 0
+1:0/0 = 0
+0:2/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_j3agj"]
+sources/0 = SubResource("TileSetAtlasSource_gj76o")
+
+[node name="Level_test" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
+position = Vector2(8, 0)
+tile_set = SubResource("TileSet_j3agj")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 65536, 0, -65536, 65536, 0, -1, 65536, 0, 65535, 65536, 0, 1, 65536, 0, -65535, 65536, 0, 131071, 65536, 0, 65536, 65536, 0, 65537, 65536, 0, 65538, 65536, 0, 131070, 0, 0, 65534, 0, 0, -2, 0, 0, -65537, 65536, 1, -131072, 65536, 1, -131071, 65536, 1, -65538, 131072, 0, -65534, 65536, 0, -65533, 65536, 0, -65532, 65536, 0, 4, 65536, 0, 2, 65536, 0, 3, 65536, 0, 196607, 65536, 0, 262143, 65536, 0, 327679, 65536, 0, 262144, 65536, 0, 262145, 65536, 0, 262146, 65536, 0, 262147, 65536, 0, 262148, 65536, 0, 65540, 65536, 0, 131076, 65536, 0, 196612, 65536, 0, 65539, 65536, 0, 131075, 65536, 0, 196611, 65536, 0, 196610, 65536, 0, 196609, 65536, 0, 196608, 65536, 0, 131072, 65536, 0, 131073, 65536, 0, 131074, 65536, 0, -131070, 65536, 1, -131069, 65536, 1, -131068, 65536, 1, -131067, 131072, 268435456, 393214, 131072, 536870912, 327685, 131072, 805306368, 393215, 0, 1, 327680, 0, 1, 327681, 0, 1, 327682, 0, 1, 327683, 0, 1, 327684, 0, 1, 196606, 0, 0, 262142, 0, 0, 327678, 0, 0, 262149, 0, 268435456, 196613, 0, 268435456, 131077, 0, 268435456, 65541, 0, 268435456, 5, 0, 268435456, -65531, 0, 268435456)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(73, 23)
+zoom = Vector2(5, 5)
+
+[node name="Car1" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(32, 1.90735e-06)
+scale = Vector2(1.67188, 2.17187)
+texture = ExtResource("2_jtypj")
+
+[node name="Car2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(64, 2.27374e-13)
+scale = Vector2(1.672, 2.172)
+texture = ExtResource("3_ui6th")
+
+[node name="Car3" type="Sprite2D" parent="."]
+position = Vector2(48, 48)
+texture = ExtResource("4_pbd0c")

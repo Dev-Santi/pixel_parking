@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c34lnsnfh6v62"]
+
+[node name="Car" type="CharacterBody2D"]
+texture_filter = 1
+scale = Vector2(2.172, 1.672)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
