@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckygjv7pp0s5g"]
+
+[ext_resource type="PackedScene" uid="uid://c34lnsnfh6v62" path="res://scenes/cars/car.tscn" id="1_cofl4"]
+[ext_resource type="Script" path="res://scenes/cars/car_right.gd" id="2_kcjr0"]
+[ext_resource type="Texture2D" uid="uid://hyqpiydxpopc" path="res://assets/car_4.png" id="2_w882i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7owep"]
+size = Vector2(29, 16)
+
+[node name="Car" instance=ExtResource("1_cofl4")]
+script = ExtResource("2_kcjr0")
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(2, 1.5)
+texture = ExtResource("2_w882i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_7owep")

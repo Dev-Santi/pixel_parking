@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckygjv7pp0s5g"]
+
+[ext_resource type="PackedScene" uid="uid://c34lnsnfh6v62" path="res://scenes/cars/car.tscn" id="1_cofl4"]
+[ext_resource type="Script" path="res://scenes/cars/car_inline.gd" id="2_40q5l"]
+[ext_resource type="Texture2D" uid="uid://hyqpiydxpopc" path="res://assets/car_4.png" id="2_w882i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7owep"]
+size = Vector2(30, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_owsxq"]
+size = Vector2(30, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5nod"]
+size = Vector2(2, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6b7sk"]
+size = Vector2(2, 14)
+
+[node name="Car" instance=ExtResource("1_cofl4")]
+script = ExtResource("2_40q5l")
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(2, 1.4)
+texture = ExtResource("2_w882i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_7owep")
+
+[node name="ClickDetector" type="Area2D" parent="." index="2"]
+
+[node name="CollisionArea2D" type="CollisionShape2D" parent="ClickDetector" index="0"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_owsxq")
+
+[node name="FrontCarDetector" type="Area2D" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontCarDetector" index="0"]
+position = Vector2(15, 0)
+shape = SubResource("RectangleShape2D_a5nod")
+debug_color = Color(0.862745, 0.321569, 0.431373, 0.419608)
+
+[node name="BackCarDetector" type="Area2D" parent="." index="4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BackCarDetector" index="0"]
+position = Vector2(-17, 0)
+shape = SubResource("RectangleShape2D_6b7sk")
+one_way_collision_margin = 0.0
+debug_color = Color(0.839216, 0.380392, 0.145098, 0.419608)
+
+[node name="MoveDelay" type="Timer" parent="." index="5"]
+wait_time = 0.15
+one_shot = true
+
+[connection signal="input_event" from="ClickDetector" to="." method="_on_click_detector_input_event"]
+[connection signal="body_entered" from="FrontCarDetector" to="." method="_on_front_car_detector_body_entered"]
+[connection signal="body_exited" from="FrontCarDetector" to="." method="_on_front_car_detector_body_exited"]
+[connection signal="body_entered" from="BackCarDetector" to="." method="_on_back_car_detector_body_entered"]
+[connection signal="body_exited" from="BackCarDetector" to="." method="_on_back_car_detector_body_exited"]
+[connection signal="timeout" from="MoveDelay" to="." method="_on_move_delay_timeout"]

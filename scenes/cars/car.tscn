@@ -2,6 +2,5 @@
 
 [node name="Car" type="CharacterBody2D"]
 texture_filter = 1
-scale = Vector2(2.172, 1.672)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
