@@ -1,16 +1,58 @@
-[gd_scene load_steps=4 format=3 uid="uid://copq1qx0wtw7m"]
+[gd_scene load_steps=7 format=3 uid="uid://br2abans0b46"]
 
 [ext_resource type="PackedScene" uid="uid://c34lnsnfh6v62" path="res://scenes/cars/car.tscn" id="1_dj7tk"]
 [ext_resource type="Texture2D" uid="uid://cdrousr8vsehb" path="res://assets/car_2.png" id="2_p28iu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4m02s"]
-size = Vector2(16, 28)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqsib"]
+size = Vector2(15, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1b8ev"]
+size = Vector2(14.5, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwkrl"]
+size = Vector2(13, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlmy5"]
+size = Vector2(13, 4)
 
 [node name="Car" instance=ExtResource("1_dj7tk")]
 
 [node name="Sprite2D" parent="." index="0"]
-scale = Vector2(1.5, 2)
+scale = Vector2(1.4, 2)
 texture = ExtResource("2_p28iu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-shape = SubResource("RectangleShape2D_4m02s")
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_sqsib")
+
+[node name="ClickDetector" type="Area2D" parent="." index="2"]
+
+[node name="CollisionArea2D" type="CollisionShape2D" parent="ClickDetector" index="0"]
+position = Vector2(-0.25, 0)
+shape = SubResource("RectangleShape2D_1b8ev")
+
+[node name="FrontCarDetector" type="Area2D" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontCarDetector" index="0"]
+position = Vector2(-0.5, 16)
+shape = SubResource("RectangleShape2D_vwkrl")
+debug_color = Color(0.862745, 0.321569, 0.431373, 0.419608)
+
+[node name="BackCarDetector" type="Area2D" parent="." index="4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BackCarDetector" index="0"]
+position = Vector2(-0.5, -16)
+shape = SubResource("RectangleShape2D_vlmy5")
+one_way_collision_margin = 0.0
+debug_color = Color(0.839216, 0.380392, 0.145098, 0.419608)
+
+[node name="MoveDelay" type="Timer" parent="." index="5"]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="input_event" from="ClickDetector" to="." method="_on_click_detector_input_event"]
+[connection signal="body_entered" from="FrontCarDetector" to="." method="_on_front_car_detector_body_entered"]
+[connection signal="body_exited" from="FrontCarDetector" to="." method="_on_front_car_detector_body_exited"]
+[connection signal="body_entered" from="BackCarDetector" to="." method="_on_back_car_detector_body_entered"]
+[connection signal="body_exited" from="BackCarDetector" to="." method="_on_back_car_detector_body_exited"]
+[connection signal="timeout" from="MoveDelay" to="." method="_on_move_delay_timeout"]

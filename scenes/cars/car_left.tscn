@@ -1,20 +1,58 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3y0mnakfkjxd"]
+[gd_scene load_steps=7 format=3 uid="uid://dnr68pe3h0mqd"]
 
 [ext_resource type="PackedScene" uid="uid://c34lnsnfh6v62" path="res://scenes/cars/car.tscn" id="1_6fr3m"]
-[ext_resource type="Script" path="res://scenes/cars/car_left.gd" id="2_6cnrq"]
-[ext_resource type="Texture2D" uid="uid://b3b6rr15h1wiu" path="res://assets/car_3.png" id="2_8uyig"]
+[ext_resource type="Texture2D" uid="uid://b3b6rr15h1wiu" path="res://assets/car_3.png" id="2_kuh2r"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kf7m5"]
-size = Vector2(14.5, 10.6667)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p36t7"]
+size = Vector2(30, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sg7ta"]
+size = Vector2(30, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqfjh"]
+size = Vector2(2, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2l76v"]
+size = Vector2(2, 14)
 
 [node name="Car" instance=ExtResource("1_6fr3m")]
-script = ExtResource("2_6cnrq")
 
 [node name="Sprite2D" parent="." index="0"]
-scale = Vector2(2, 1.5)
-texture = ExtResource("2_8uyig")
+scale = Vector2(2, 1.4)
+texture = ExtResource("2_kuh2r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-position = Vector2(-0.5, -2.38419e-07)
-scale = Vector2(2, 1.5)
-shape = SubResource("RectangleShape2D_kf7m5")
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_p36t7")
+
+[node name="ClickDetector" type="Area2D" parent="." index="2"]
+
+[node name="CollisionArea2D" type="CollisionShape2D" parent="ClickDetector" index="0"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_sg7ta")
+
+[node name="FrontCarDetector" type="Area2D" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontCarDetector" index="0"]
+position = Vector2(-17, 0)
+shape = SubResource("RectangleShape2D_sqfjh")
+debug_color = Color(0.862745, 0.321569, 0.431373, 0.419608)
+
+[node name="BackCarDetector" type="Area2D" parent="." index="4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BackCarDetector" index="0"]
+position = Vector2(15, 0)
+shape = SubResource("RectangleShape2D_2l76v")
+one_way_collision_margin = 0.0
+debug_color = Color(0.839216, 0.380392, 0.145098, 0.419608)
+
+[node name="MoveDelay" type="Timer" parent="." index="5"]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="input_event" from="ClickDetector" to="." method="_on_click_detector_input_event"]
+[connection signal="body_entered" from="FrontCarDetector" to="." method="_on_front_car_detector_body_entered"]
+[connection signal="body_exited" from="FrontCarDetector" to="." method="_on_front_car_detector_body_exited"]
+[connection signal="body_entered" from="BackCarDetector" to="." method="_on_back_car_detector_body_entered"]
+[connection signal="body_exited" from="BackCarDetector" to="." method="_on_back_car_detector_body_exited"]
+[connection signal="timeout" from="MoveDelay" to="." method="_on_move_delay_timeout"]

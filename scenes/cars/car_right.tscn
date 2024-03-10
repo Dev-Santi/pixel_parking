@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckygjv7pp0s5g"]
+[gd_scene load_steps=7 format=3 uid="uid://ckygjv7pp0s5g"]
 
 [ext_resource type="PackedScene" uid="uid://c34lnsnfh6v62" path="res://scenes/cars/car.tscn" id="1_cofl4"]
-[ext_resource type="Script" path="res://scenes/cars/car_inline.gd" id="2_40q5l"]
 [ext_resource type="Texture2D" uid="uid://hyqpiydxpopc" path="res://assets/car_4.png" id="2_w882i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7owep"]
@@ -17,7 +16,6 @@ size = Vector2(2, 14)
 size = Vector2(2, 14)
 
 [node name="Car" instance=ExtResource("1_cofl4")]
-script = ExtResource("2_40q5l")
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(2, 1.4)
@@ -49,7 +47,7 @@ one_way_collision_margin = 0.0
 debug_color = Color(0.839216, 0.380392, 0.145098, 0.419608)
 
 [node name="MoveDelay" type="Timer" parent="." index="5"]
-wait_time = 0.15
+wait_time = 0.1
 one_shot = true
 
 [connection signal="input_event" from="ClickDetector" to="." method="_on_click_detector_input_event"]

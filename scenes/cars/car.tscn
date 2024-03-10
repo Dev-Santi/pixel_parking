@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://c34lnsnfh6v62"]
+[gd_scene load_steps=2 format=3 uid="uid://c34lnsnfh6v62"]
+
+[ext_resource type="Script" path="res://scenes/cars/car.gd" id="1_y4pwa"]
 
 [node name="Car" type="CharacterBody2D"]
 texture_filter = 1
+script = ExtResource("1_y4pwa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
