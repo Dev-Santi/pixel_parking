@@ -9,17 +9,17 @@ var can_move_backward = true
 func _ready():
 	var car_name = self.get_name()
 	if car_name.contains("left"):
-		looking_at = Vector2(-8,0)
-		inverse_looking_at = Vector2(8,0)
+		looking_at = Vector2(-16,0)
+		inverse_looking_at = Vector2(16,0)
 	elif car_name.contains("right"):
-		looking_at = Vector2(8,0)
-		inverse_looking_at = Vector2(-8,0)
+		looking_at = Vector2(16,0)
+		inverse_looking_at = Vector2(-16,0)
 	elif car_name.contains("top"):
-		looking_at = Vector2(0,-8)
-		inverse_looking_at = Vector2(0,8)
+		looking_at = Vector2(0,-16)
+		inverse_looking_at = Vector2(0,16)
 	elif car_name.contains("down"):
-		looking_at = Vector2(0,8)
-		inverse_looking_at = Vector2(0,-8)
+		looking_at = Vector2(0,16)
+		inverse_looking_at = Vector2(0,-16)
 	
 	
 func _process(_delta):

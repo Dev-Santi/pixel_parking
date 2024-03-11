@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyetn1okhuvji"]
+
+[ext_resource type="PackedScene" uid="uid://ds4cwh41dsuks" path="res://scenes/cars/truck_top.tscn" id="1_rtbju"]
+[ext_resource type="Texture2D" uid="uid://41ybcewpn5th" path="res://assets/truck_down.png" id="2_77j1x"]
+
+[node name="Car" instance=ExtResource("1_rtbju")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_77j1x")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0.5, -0.5)
+
+[node name="CollisionArea2D" parent="ClickDetector" index="0"]
+position = Vector2(-0.5, 1)
+
+[node name="CollisionShape2D" parent="FrontCarDetector" index="0"]
+position = Vector2(0, 25)
+
+[node name="CollisionShape2D" parent="BackCarDetector" index="0"]
+position = Vector2(0, -25)
